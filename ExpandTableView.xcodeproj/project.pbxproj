@@ -14,6 +14,10 @@
 		DD74E76A199C98A500456C3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD74E768199C98A500456C3B /* Main.storyboard */; };
 		DD74E76C199C98A500456C3B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD74E76B199C98A500456C3B /* Images.xcassets */; };
 		DD74E778199C98A500456C3B /* ExpandTableViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD74E777199C98A500456C3B /* ExpandTableViewTests.m */; };
+		DD74E78A199C99AE00456C3B /* ChildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD74E783199C99AE00456C3B /* ChildTableViewCell.m */; };
+		DD74E78B199C99AE00456C3B /* ChildTableViewCellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD74E785199C99AE00456C3B /* ChildTableViewCellCell.m */; };
+		DD74E78D199C99AE00456C3B /* ParentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD74E789199C99AE00456C3B /* ParentTableViewCell.m */; };
+		DD74E790199C9CA100456C3B /* ExpandTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD74E78F199C9CA100456C3B /* ExpandTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,14 @@
 		DD74E771199C98A500456C3B /* ExpandTableViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpandTableViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD74E776199C98A500456C3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD74E777199C98A500456C3B /* ExpandTableViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpandTableViewTests.m; sourceTree = "<group>"; };
+		DD74E782199C99AE00456C3B /* ChildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildTableViewCell.h; sourceTree = "<group>"; };
+		DD74E783199C99AE00456C3B /* ChildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildTableViewCell.m; sourceTree = "<group>"; };
+		DD74E784199C99AE00456C3B /* ChildTableViewCellCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildTableViewCellCell.h; sourceTree = "<group>"; };
+		DD74E785199C99AE00456C3B /* ChildTableViewCellCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildTableViewCellCell.m; sourceTree = "<group>"; };
+		DD74E788199C99AE00456C3B /* ParentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentTableViewCell.h; sourceTree = "<group>"; };
+		DD74E789199C99AE00456C3B /* ParentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentTableViewCell.m; sourceTree = "<group>"; };
+		DD74E78E199C9CA100456C3B /* ExpandTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandTableView.h; sourceTree = "<group>"; };
+		DD74E78F199C9CA100456C3B /* ExpandTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +93,11 @@
 		DD74E75A199C98A500456C3B /* ExpandTableView */ = {
 			isa = PBXGroup;
 			children = (
-				DD74E75F199C98A500456C3B /* AppDelegate.h */,
-				DD74E760199C98A500456C3B /* AppDelegate.m */,
+				DD74E781199C997A00456C3B /* Lib */,
 				DD74E765199C98A500456C3B /* ViewController.h */,
 				DD74E766199C98A500456C3B /* ViewController.m */,
 				DD74E768199C98A500456C3B /* Main.storyboard */,
 				DD74E76B199C98A500456C3B /* Images.xcassets */,
-				DD74E762199C98A500456C3B /* ExpandTableView.xcdatamodeld */,
 				DD74E75B199C98A500456C3B /* Supporting Files */,
 			);
 			path = ExpandTableView;
@@ -96,6 +106,9 @@
 		DD74E75B199C98A500456C3B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DD74E762199C98A500456C3B /* ExpandTableView.xcdatamodeld */,
+				DD74E75F199C98A500456C3B /* AppDelegate.h */,
+				DD74E760199C98A500456C3B /* AppDelegate.m */,
 				DD74E75C199C98A500456C3B /* Info.plist */,
 				DD74E75D199C98A500456C3B /* main.m */,
 			);
@@ -117,6 +130,21 @@
 				DD74E776199C98A500456C3B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DD74E781199C997A00456C3B /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				DD74E78E199C9CA100456C3B /* ExpandTableView.h */,
+				DD74E78F199C9CA100456C3B /* ExpandTableView.m */,
+				DD74E788199C99AE00456C3B /* ParentTableViewCell.h */,
+				DD74E789199C99AE00456C3B /* ParentTableViewCell.m */,
+				DD74E782199C99AE00456C3B /* ChildTableViewCell.h */,
+				DD74E783199C99AE00456C3B /* ChildTableViewCell.m */,
+				DD74E784199C99AE00456C3B /* ChildTableViewCellCell.h */,
+				DD74E785199C99AE00456C3B /* ChildTableViewCellCell.m */,
+			);
+			name = Lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,10 +246,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD74E78D199C99AE00456C3B /* ParentTableViewCell.m in Sources */,
 				DD74E761199C98A500456C3B /* AppDelegate.m in Sources */,
+				DD74E78B199C99AE00456C3B /* ChildTableViewCellCell.m in Sources */,
 				DD74E75E199C98A500456C3B /* main.m in Sources */,
 				DD74E767199C98A500456C3B /* ViewController.m in Sources */,
 				DD74E764199C98A500456C3B /* ExpandTableView.xcdatamodeld in Sources */,
+				DD74E78A199C99AE00456C3B /* ChildTableViewCell.m in Sources */,
+				DD74E790199C9CA100456C3B /* ExpandTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
