@@ -61,7 +61,7 @@
 
 @interface ExpandTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
-@property(strong, nonatomic) id<ExpandTableViewDelegate> extpandDelegate;
+@property(strong, nonatomic) id<ExpandTableViewDelegate> expandDelegate;
 @property(strong, nonatomic) id<ExpandTableViewDataSource> expandDataSource;
 
 @property(nonatomic,strong) NSMutableArray * expansionStates;

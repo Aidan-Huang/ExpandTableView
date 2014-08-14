@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExpandTableView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <ExpandTableViewDelegate, ExpandTableViewDataSource,
+UITableViewDataSource, UITableViewDelegate>
 
+@property(nonatomic,weak) IBOutlet ExpandTableView * expandTableView;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property(nonatomic,strong) NSMutableArray * dataModelArray;
 
 @end
 

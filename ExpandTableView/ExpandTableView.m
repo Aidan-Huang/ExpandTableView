@@ -18,8 +18,52 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self initialize];
     }
     return self;
+}
+
+- (id)initWithFrame:(CGRect)frame dataSource:dataDelegate tableViewDelegate:tableDelegate {
+    self = [super initWithFrame:frame style:UITableViewStylePlain];
+    //self = [super initWithFrame:frame style:UITableViewStyleGrouped];
+    if (self) {
+        // Initialization code
+        [self initialize];
+    }
+    return self;
+}
+
+-(id)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        // Initialization code
+        [self initialize];
+    }
+    return self;
+}
+
+- (void) initialize {
+    self.dataSource = self;
+    self.delegate = self;
+    self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    // Trick to hide UITableView Empty Cell Separator Lines (stuff below last nonempty cell)
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableFooterView = footer;
+}
+
+- (void) setExpandDataSource:(id<ExpandTableViewDataSource>)expandDataSource
+{
+    _expandDataSource = expandDataSource;
+    [self initExpansionStates];
+}
+
+- (void) initExpansionStates
+{
+    // all collapsed initially
+    self.expansionStates = [[NSMutableArray alloc] initWithCapacity:[self.expandDataSource numberOfParentCells]];
+    for(int i = 0; i<[self.expandDataSource numberOfParentCells]; i++) {
+        [self.expansionStates addObject:@"NO"];
+    }
 }
 
 /*
@@ -139,8 +183,9 @@
             return cell;
         
     } else {
+        
         // regular parent cell
-        ParentTableViewCell *cell = (ParentTableViewCell *)[self dequeueReusableCellWithIdentifier:CellIdentifier_Parent];
+        ParentTableViewCell *cell = (ParentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier_Parent];
         if (cell == nil) {
             cell = [[ParentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_Parent];
         } else {
