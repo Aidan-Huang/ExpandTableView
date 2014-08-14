@@ -74,6 +74,42 @@
 }
 */
 
+- (void) expandForParentAtRow: (NSInteger) row {
+    NSUInteger parentIndex = [self parentIndexForRow:row];
+    
+    if ([[self.expansionStates objectAtIndex:parentIndex] boolValue]) {
+        return;
+    }
+    // update expansionStates so backing data is ready before calling insertRowsAtIndexPaths
+    [self.expansionStates replaceObjectAtIndex:parentIndex withObject:@"YES"];
+    
+    [self insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:(row + 1) inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void) collapseForParentAtRow: (NSInteger) row {
+    NSUInteger parentIndex = [self parentIndexForRow:row];
+    
+    if (![[self.expansionStates objectAtIndex:parentIndex] boolValue]) {
+        return;
+    }
+    // update expansionStates so backing data is ready before calling deleteRowsAtIndexPaths
+    [self.expansionStates replaceObjectAtIndex:parentIndex withObject:@"NO"];
+    
+    [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:(row + 1) inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+//- (void) animateParentCellIconExpand: (BOOL) expand forCell: (ParentTableViewCell *) cell {
+//    if ([self.expandDataSource respondsToSelector:@selector(shouldRotateIconForParentOnToggle)] &&
+//        ([self.expandDataSource shouldRotateIconForParentOnToggle] == NO)) {
+//    } else {
+//        if (expand) {
+//            [cell rotateIconToExpanded];
+//        } else {
+//            [cell rotateIconToCollapsed];
+//        }
+//    }
+//}
+
 
 - (NSUInteger) rowForParentIndex:(NSUInteger) parentIndex {
     NSUInteger row = 0;
@@ -244,5 +280,31 @@
         return HEIGHT_FOR_CELL;
     }
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // if parent , expand/collpase then notify delegate (always check respond to selector)
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([selectedCell isKindOfClass:[ParentTableViewCell class]]) {
+        
+        ParentTableViewCell * pCell = (ParentTableViewCell *) selectedCell;
+        
+        if ([[self.expansionStates objectAtIndex:[pCell parentIndex]] boolValue]) {
+            [self collapseForParentAtRow:indexPath.row];
+            //[self animateParentCellIconExpand:NO forCell:pCell];  // TODO handle the case where there is no child.
+        } else {
+            [self expandForParentAtRow:indexPath.row];
+            //[self animateParentCellIconExpand:YES forCell:pCell];
+        }
+        
+        if ([self.expandDelegate respondsToSelector:@selector(tableView:didSelectParentCellAtIndex:)]) {
+            [self.expandDelegate tableView:tableView didSelectParentCellAtIndex:[pCell parentIndex]];
+        }
+        
+    } else {
+        // ignore clicks on child because the sub table should handle it.
+    }
+}
+
 
 @end

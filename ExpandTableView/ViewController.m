@@ -19,9 +19,6 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self initializeSampleDataModel];
     
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    
     self.expandTableView.expandDataSource = self;
     self.expandTableView.expandDelegate = self;
     
@@ -117,26 +114,5 @@
     }
 }
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *identifier = @"myCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
-    
-    cell.textLabel.text = @"test";
-    
-    return cell;
-
-
-}
 
 @end
