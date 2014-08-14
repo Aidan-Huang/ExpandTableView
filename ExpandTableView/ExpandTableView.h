@@ -43,14 +43,27 @@
  @return The total number of children cells under each parent in this table.
  */
 - (NSInteger) numberOfChildCellsUnderParentIndex:(NSInteger) parentIndex;
+/*!
+ @param parentIndex The parent index in question
+ @return The label string shown on the parent cell.
+ */
+- (NSString *) labelForParentCellAtIndex:(NSInteger) parentIndex;
+
+/*!
+ @param childIndex The child index in question
+ @param parentIndex The parent index in question
+ @return The label string shown on the child cell.
+ */
+- (NSString *) labelForCellAtChildIndex:(NSInteger) childIndex withinParentCellIndex:(NSInteger) parentIndex;
 
 
 @end
 
-@interface ExpandTableView : UIView
+@interface ExpandTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
-@property(strong, nonatomic) id<ExpandTableViewDelegate> delegate;
-@property(strong, nonatomic) id<ExpandTableViewDataSource> dataSource;
+@property(strong, nonatomic) id<ExpandTableViewDelegate> extpandDelegate;
+@property(strong, nonatomic) id<ExpandTableViewDataSource> expandDataSource;
 
+@property(nonatomic,strong) NSMutableArray * expansionStates;
 
 @end

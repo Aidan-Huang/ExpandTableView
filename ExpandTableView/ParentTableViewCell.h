@@ -10,4 +10,6 @@
 
 @interface ParentTableViewCell : UITableViewCell
 
+@property (nonatomic) NSInteger parentIndex;
+
 @end
